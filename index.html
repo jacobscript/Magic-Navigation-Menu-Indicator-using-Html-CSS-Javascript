@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>
+            Magic Navigation Menu Indicator using Html CSS & Javascript
+        </title>
+    </head>
+
+    <body>
+        <ul>
+            <li>
+                <a href="#"
+                    ><ion-icon name="home"></ion-icon><text>Home</text></a
+                >
+            </li>
+            <li>
+                <a href="#"
+                    ><ion-icon name="person"></ion-icon><text>Account</text></a
+                >
+            </li>
+            <li class="active">
+                <a href="#"
+                    ><ion-icon name="add-circle"></ion-icon
+                    ><text>Create</text></a
+                >
+            </li>
+            <li>
+                <a href="#"
+                    ><ion-icon name="settings"></ion-icon
+                    ><text>Settings</text></a
+                >
+            </li>
+            <li>
+                <a href="#"
+                    ><ion-icon name="chatbubble"></ion-icon><text>Chat</text></a
+                >
+            </li>
+            <div id="marker"><span></span></div>
+        </ul>
+
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+        ></script>
+
+        <script>
+            let marker = document.querySelector('#marker')
+            let list = document.querySelectorAll('ul li')
+            marker.style.left = '240px'
+            marker.style.width = '80px'
+
+            function moveIndicator(e) {
+                marker.style.left = e.offsetLeft + 'px'
+                marker.style.width = e.offsetWidth + 'px'
+                // add for smooth transition at the beginning
+                console.log(marker.style.left)
+                console.log(marker.style.width)
+            }
+
+            list.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    moveIndicator(e.target)
+                })
+            })
+
+            // add active class in selected list item
+            function activeLink() {
+                list.forEach((item) => item.classList.remove('active'))
+                this.classList.add('active')
+            }
+
+            list.forEach((item) => item.addEventListener('click', activeLink))
+        </script>
+    </body>
+</html>
